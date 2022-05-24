@@ -10,6 +10,7 @@ import "../extensions/ERC721Pausable.sol";
 import "../../../access/AccessControlEnumerable.sol";
 import "../../../utils/Context.sol";
 import "../../../utils/Counters.sol";
+import "hardhat/console.sol";
 
 /**
  * @dev {ERC721} token, including:
@@ -58,6 +59,8 @@ contract ERC721PresetMinterPauserAutoId is
 
         _setupRole(MINTER_ROLE, _msgSender());
         _setupRole(PAUSER_ROLE, _msgSender());
+
+        console.log("Owner contract deployed by:", msg.sender);
     }
 
 
