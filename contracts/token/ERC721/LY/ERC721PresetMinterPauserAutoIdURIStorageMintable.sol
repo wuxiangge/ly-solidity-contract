@@ -1,9 +1,9 @@
 pragma solidity ^0.8.0;
 
-import "./ERC721PresetMinterPauserAutoIdURIStorage.sol";
-import "hardhat/console.sol";
+import "../extensions/ERC721URIStorage.sol";
+import "../presets/ERC721PresetMinterPauserAutoId.sol";
 
-contract ERC721PresetMinterPauserAutoIdURIStorageMintable is ERC721PresetMinterPauserAutoIdURIStorage {
+contract ERC721PresetMinterPauserAutoIdURIStorageMintable is ERC721PresetMinterPauserAutoId, ERC721URIStorage {
 
     /**
      * @dev Function to mint tokens.
@@ -24,7 +24,7 @@ contract ERC721PresetMinterPauserAutoIdURIStorageMintable is ERC721PresetMinterP
      * @param tokenURI The token URI of the minted token.
      * @return A boolean that indicates if the operation was successful.
      */
-    function mintWithTokenURI(address to, uint256 quantity,string memory tokenURI) public returns (bool) {
+    function mintWithTokenURI(address to, uint256 quantity, string memory tokenURI) public returns (bool) {
         for (uint p = 0; p < proposals.length; p++) {
             uint256 tokenId = super.mint(to);
             _setTokenURI(tokenId, tokenURI);
@@ -33,8 +33,7 @@ contract ERC721PresetMinterPauserAutoIdURIStorageMintable is ERC721PresetMinterP
     }
 
 
-    constructor(string memory name, string memory symbol)  ERC721PresetMinterPauserAutoIdURIStorage(name, symbol) public{
-        console.log("Owner contract deployed by:", msg.sender);
+    constructor(string memory name, string memory symbol)  ERC721PresetMinterPauserAutoId(name, symbol) public {
     }
 
 }

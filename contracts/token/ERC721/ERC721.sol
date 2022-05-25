@@ -253,7 +253,8 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
      * @dev Same as {xref-ERC721-_safeMint-address-uint256-}[`_safeMint`], with an additional `data` parameter which is
      * forwarded in {IERC721Receiver-onERC721Received} to contract recipients.
      */
-    function _safeMint(
+    function
+    (
         address to,
         uint256 tokenId,
         bytes memory data
